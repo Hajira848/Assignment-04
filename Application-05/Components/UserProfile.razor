@@ -22,13 +22,15 @@
                 }
                 else
                 {
-                    <div class="bg-warning-subtle text-warning-emphasis p-4 text-center border-bottom border-warning-subtle">
+                    <div class="bg-warning-subtle text-warning-emphasis p-4 text-center border-bottom
+                    border-warning-subtle">
                         <i class="bi bi-exclamation-triangle-fill display-3 mb-2 text-warning"></i>
                         <h2 class="fw-bold">Access Restricted</h2>
                         <p class="mb-0">You are currently viewing this screen as a guest</p>
                     </div>
                     <div class="card-body p-4 text-center">
-                        <p class="text-secondary">Please navigate to the login panel to unlock your private user dashboard data records.</p>
+                        <p class="text-secondary">Please navigate to the login panel to unlock your private
+                            user dashboard data records.</p>
                         <a href="login" class="btn btn-outline-warning mt-2 fw-semibold px-4 shadow-sm">
                             Go to Login Center
                         </a>
@@ -40,13 +42,10 @@
 </div>
 
 @code {
-    // Hooks the reactive state action listener onto the local component state tree
     protected override void OnInitialized()
     {
         AuthService.OnStateChanged += StateHasChanged;
     }
-
-    // Standard housekeeping cleanup method to drop the reference hook safely
     public void Dispose()
     {
         AuthService.OnStateChanged -= StateHasChanged;

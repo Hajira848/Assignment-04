@@ -12,8 +12,8 @@
                     <h4 class="mb-0">Authentication Control Center</h4>
                 </div>
                 <div class="card-body p-5">
-                    <i class="bi @(AuthService.IsAuthenticated ? "bi-shield-check text-success" : "bi-shield-lock text-danger") display-2 mb-4"></i>
-
+                    <i class="bi @(AuthService.IsAuthenticated ? "bi-shield-check text-success" :
+                   "bi-shield-lock text-danger") display-2 mb-4"></i>
                     <h5 class="card-title mb-4">
                         Current Status:
                         <span class="badge @(AuthService.IsAuthenticated ? "bg-success" : "bg-danger") fs-6 px-3 py-2">
