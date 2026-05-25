@@ -10,3 +10,4 @@ namespace Application_08.Data
         public DbSet<ToDoTask> ToDoTasks { get; set; }
     }
 }
+

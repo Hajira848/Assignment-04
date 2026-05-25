@@ -17,3 +17,4 @@ namespace Application_08.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }
+
