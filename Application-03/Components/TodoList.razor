@@ -62,23 +62,18 @@
 </div>
 
 @code {
-    // Two-way bound string parameter for capturing user keystrokes
     private string newTaskTitle = string.Empty;
 
-    // Local data collection array acting as the source for the tasks container
     private List<string> tasksList = new List<string>();
-
-    // Logic implementation to insert data rows into the array list collection
     private void AddTask()
     {
         if (!string.IsNullOrWhiteSpace(newTaskTitle))
         {
             tasksList.Add(newTaskTitle.Trim());
-            newTaskTitle = string.Empty; // Resets input text back to empty state
+            newTaskTitle = string.Empty;
         }
     }
 
-    // Handles triggering submission automatically if the user presses the 'Enter' key
     private void HandleKeyPress(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
@@ -87,7 +82,6 @@
         }
     }
 
-    // Logic mapping to completely clear out the tasks collection list state
     private void ClearAllTasks()
     {
         tasksList.Clear();
