@@ -1,5 +1,199 @@
-﻿<h3>Todo</h3>
+﻿@page "/todo"
+@using Application_08.Data
+@using Application_08.Models
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext DbContext
+@rendermode InteractiveServer
+
+<PageTitle>Data-Driven ToDo Tasks</PageTitle>
+
+<div class="todo-architecture-container">
+    <div class="todo-card-frame">
+        <div class="todo-header-panel">
+            <div class="icon-avatar">
+                <i class="bi bi-list-check text-white"></i>
+            </div>
+            <div>
+                <span class="system-tag">SQL Database Integrated System</span>
+                <h1 class="todo-main-title">Task Management Ledger</h1>
+            </div>
+        </div>
+
+        <div class="task-input-matrix mt-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control custom-input-field"
+                       placeholder="Enter new transactional task parameter..."
+                       @bind="NewTaskTitle" @onkeyup="HandleKeyUp" />
+                <button class="btn btn-primary action-execution-btn" @onclick="AddTask">
+                    <i class="bi bi-plus-circle-fill me-2"></i> Add Task
+                </button>
+            </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <div class="task-render-stack">
+            @if (Tasks == null)
+            {
+                <p class="system-loading-string">Polling transactional table logs...</p>
+            }
+            else if (!Tasks.Any())
+            {
+                <p class="empty-state-caption">No structural tasks registered inside the database instance.</p>
+            }
+            else
+            {
+                @foreach (var task in Tasks)
+                {
+                    <div class="task-row-item @(task.IsCompleted ? "state-completed" : "")">
+                        <div class="d-flex align-items-center gap-3 flex-grow-1">
+                            <input type="checkbox" class="form-check-input task-state-toggle"
+                                   checked="@task.IsCompleted"
+                                   @onchange="(e) => ToggleTaskCompletion(task)" />
+                            <span class="task-string-display">@task.Title</span>
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm operational-delete-btn"
+                                @onclick="() => DeleteTask(task.Id)">
+                            <i class="bi bi-trash3-fill"></i>
+                        </button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .todo-architecture-container {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+    .todo-card-frame {
+        width: 100%;
+        max-width: 650px;
+        background: rgba(128, 128, 128, 0.04);
+        border: 1px solid rgba(128, 128, 128, 0.15);
+        padding: 2.5rem;
+        border-radius: 1.25rem;
+    }
+    .todo-header-panel {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+    .icon-avatar {
+        background: #0d6efd;
+        padding: 0.85rem;
+        border-radius: 0.5rem;
+        font-size: 1.75rem;
+        display: flex;
+    }
+    .system-tag {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+    }
+    .todo-main-title {
+        margin: 0;
+        font-size: 1.85rem;
+        font-weight: 800;
+    }
+    .custom-input-field {
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem 0 0 0.5rem;
+    }
+    .action-execution-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        font-weight: 600;
+    }
+    .divider-line {
+        height: 1px;
+        background: rgba(128, 128, 128, 0.18);
+        margin: 1.75rem 0;
+    }
+    .task-row-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border: 1px solid rgba(128, 128, 128, 0.12);
+        background: rgba(128, 128, 128, 0.02);
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s ease;
+    }
+    .state-completed .task-string-display {
+        text-decoration: line-through;
+        opacity: 0.5;
+    }
+    .task-string-display {
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    .operational-delete-btn {
+        border-radius: 0.35rem;
+    }
+</style>
 
 @code {
+    private List<ToDoTask> Tasks = new();
+    private string NewTaskTitle { get; set; } = string.Empty;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTasksFromDatabase();
+    }
+
+    private async Task LoadTasksFromDatabase()
+    {
+        // READ Operation
+        Tasks = await DbContext.ToDoTasks.OrderByDescending(t => t.CreatedAt).ToListAsync();
+    }
+
+    private async Task AddTask()
+    {
+        // CREATE Operation
+        if (!string.IsNullOrWhiteSpace(NewTaskTitle))
+        {
+            var task = new ToDoTask { Title = NewTaskTitle.Trim(), IsCompleted = false };
+            DbContext.ToDoTasks.Add(task);
+            await DbContext.SaveChangesAsync();
+
+            NewTaskTitle = string.Empty;
+            await LoadTasksFromDatabase(); // Refresh local viewport state
+        }
+    }
+
+    private async Task ToggleTaskCompletion(ToDoTask task)
+    {
+        // UPDATE Operation
+        task.IsCompleted = !task.IsCompleted;
+        DbContext.ToDoTasks.Update(task);
+        await DbContext.SaveChangesAsync();
+        await LoadTasksFromDatabase();
+    }
+
+    private async Task DeleteTask(int id)
+    {
+        // DELETE Operation
+        var task = await DbContext.ToDoTasks.FindAsync(id);
+        if (task != null)
+        {
+            DbContext.ToDoTasks.Remove(task);
+            await DbContext.SaveChangesAsync();
+            await LoadTasksFromDatabase();
+        }
+    }
+
+    private async Task HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await AddTask();
+        }
+    }
 }
