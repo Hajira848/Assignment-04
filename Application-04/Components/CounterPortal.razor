@@ -12,12 +12,14 @@
                 <div class="card-body p-4 text-center">
 
                     <div class="bg-light rounded p-4 mb-4 border border-primary-subtle shadow-sm">
-                        <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 0.85rem; letter-spacing: 1px;">Current Click Count</p>
+                        <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 0.85rem; 
+                         letter-spacing: 1px;">Current Click Count</p>
                         <h1 class="display-1 text-primary fw-bold my-0">@currentCount</h1>
                     </div>
 
                     <div class="d-grid gap-2 mb-4">
-                        <button class="btn btn-primary btn-lg py-3 shadow-sm text-uppercase fw-bold" @onclick="IncrementCount">
+                        <button class="btn btn-primary btn-lg py-3 shadow-sm text-uppercase fw-bold" @onclick=
+                        "IncrementCount">
                             <i class="bi bi-plus-circle me-2"></i> Click to Increment
                         </button>
                     </div>
@@ -53,9 +55,9 @@
 @code {
 
     private int currentCount = 0;
-
     private void IncrementCount()
     {
         currentCount++;
     }
 }
+
