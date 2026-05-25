@@ -1,12 +1,17 @@
-using Application_08.Components;
+using Microsoft.EntityFrameworkCore;
+using Application_08.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add EF Core SQL Server Dependency Injection
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
+// Remaining boilerplate parameters follow...
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
