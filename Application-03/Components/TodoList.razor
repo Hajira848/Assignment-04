@@ -1,0 +1,95 @@
+﻿@page "/todolist"
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h3 class="mb-0">Application 3: To-Do List</h3>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="input-group mb-4 shadow-sm">
+                        <input type="text"
+                               class="form-control form-control-lg"
+                               placeholder="Enter a new task..."
+                               @bind="newTaskTitle"
+                               @bind:event="oninput"
+                               @onkeyup="HandleKeyPress" />
+                        <button class="btn btn-success btn-lg px-4" @onclick="AddTask">
+                            <i class="bi bi-plus-circle-fill me-1"></i> Add
+                        </button>
+                    </div>
+
+                    @if (tasksList.Count > 0)
+                    {
+                        <div class="text-end mb-3">
+                            <button class="btn btn-outline-danger btn-sm shadow-sm" @onclick="ClearAllTasks">
+                                <i class="bi bi-trash3-fill me-1"></i> Clear All Tasks
+                            </button>
+                        </div>
+                    }
+
+                    <div class="mt-2">
+                        @if (tasksList.Count == 0)
+                        {
+                            <div class="text-center text-muted my-4 py-3 bg-light rounded border border-dashed">
+                                <i class="bi bi-clipboard-x fs-2 d-block mb-2 text-secondary"></i>
+                                <span>No tasks added yet. Type above to add a task!</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="list-group shadow-sm">
+                                @foreach (var task in tasksList)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center py-3 animate-fade-in">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-arrow-right-short text-success fs-4 me-2"></i>
+                                            <span class="fs-5">@task</span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Two-way bound string parameter for capturing user keystrokes
+    private string newTaskTitle = string.Empty;
+
+    // Local data collection array acting as the source for the tasks container
+    private List<string> tasksList = new List<string>();
+
+    // Logic implementation to insert data rows into the array list collection
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTaskTitle))
+        {
+            tasksList.Add(newTaskTitle.Trim());
+            newTaskTitle = string.Empty; // Resets input text back to empty state
+        }
+    }
+
+    // Handles triggering submission automatically if the user presses the 'Enter' key
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddTask();
+        }
+    }
+
+    // Logic mapping to completely clear out the tasks collection list state
+    private void ClearAllTasks()
+    {
+        tasksList.Clear();
+    }
+}
