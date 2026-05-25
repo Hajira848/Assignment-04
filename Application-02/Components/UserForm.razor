@@ -68,11 +68,8 @@
 
     private void HandleValidSubmit()
     {
-        // This execution route triggers ONLY if all DataAnnotation validations pass successfully.
         submittedUserEmail = user.Email;
         showSuccessMessage = true;
-
-        // Reset form model instance state values safely
         user = new UserModel();
     }
 }

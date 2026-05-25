@@ -17,3 +17,4 @@ namespace Application_02.Models
         public string Email { get; set; } = string.Empty;
     }
 }
+
