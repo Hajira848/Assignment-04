@@ -1,7 +1,46 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="p-5 bg-light rounded shadow-sm border border-secondary-subtle text-center">
+                <i class="bi bi-shield-shaded display-1 text-primary mb-3"></i>
+                <h1 class="display-4 text-dark fw-bold mb-3">Application 05 Portal</h1>
+                <p class="lead fs-4 text-muted mb-4">
+                    Welcome to the <strong>Global State Management & User Authentication</strong> Demo.
+                </p>
 
-<h1>Hello, world!</h1>
+                <hr class="my-4 text-secondary-subtle" />
 
-Welcome to your new app.
+                <div class="text-start mx-auto mb-4 p-4 bg-white rounded border" style="max-width: 550px;">
+                    <h5 class="fw-bold text-secondary mb-3">
+                        <i class="bi bi-info-circle-fill me-2 text-primary"></i> Application Highlights:
+                    </h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <i class="bi bi-check2-square text-success me-2"></i>
+                            <strong>Global State Scope:</strong> Data lives in system memory via <code>Program.cs</code>.
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check2-square text-success me-2"></i>
+                            <strong>Singleton Instance:</strong> One master service manages authentication for all pages.
+                        </li>
+                        <li class="mb-0">
+                            <i class="bi bi-check2-square text-success me-2"></i>
+                            <strong>Reactive Event System:</strong> Multi-component UI updates live without forcing refresh.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="login" class="btn btn-primary btn-lg px-4 shadow-sm">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> Open Login Portal
+                    </a>
+                    <a href="userprofile" class="btn btn-outline-dark btn-lg px-4 shadow-sm">
+                        <i class="bi bi-person-bounding-box me-2"></i> View Profile Monitor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

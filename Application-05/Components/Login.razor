@@ -1,0 +1,53 @@
+﻿@page "/login"
+@using Application_05.Services
+@inject AuthenticationStateService AuthService
+@implements IDisposable
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0 text-center">
+                <div class="card-header bg-dark text-white py-3">
+                    <h4 class="mb-0">Authentication Control Center</h4>
+                </div>
+                <div class="card-body p-5">
+                    <i class="bi @(AuthService.IsAuthenticated ? "bi-shield-check text-success" : "bi-shield-lock text-danger") display-2 mb-4"></i>
+
+                    <h5 class="card-title mb-4">
+                        Current Status:
+                        <span class="badge @(AuthService.IsAuthenticated ? "bg-success" : "bg-danger") fs-6 px-3 py-2">
+                            @(AuthService.IsAuthenticated ? "Logged In" : "Logged Out")
+                        </span>
+                    </h5>
+
+                    <div class="d-grid gap-2">
+                        @if (!AuthService.IsAuthenticated)
+                        {
+                            <button class="btn btn-success btn-lg shadow-sm" @onclick="AuthService.LogIn">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Click to Log In
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger btn-lg shadow-sm" @onclick="AuthService.LogOut">
+                                <i class="bi bi-box-arrow-left me-2"></i> Click to Log Out
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AuthService.OnStateChanged += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        AuthService.OnStateChanged -= StateHasChanged;
+    }
+}

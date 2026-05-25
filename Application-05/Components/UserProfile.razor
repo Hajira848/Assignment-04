@@ -1,0 +1,54 @@
+﻿@page "/userprofile"
+@using Application_05.Services
+@inject AuthenticationStateService AuthService
+@implements IDisposable
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0 overflow-hidden">
+                @if (AuthService.IsAuthenticated)
+                {
+                    <div class="bg-success text-white p-4 text-center">
+                        <i class="bi bi-person-circle display-3 mb-2"></i>
+                        <h2 class="fw-bold">Welcome Back, User!</h2>
+                        <p class="mb-0">Access Granted to Premium Features</p>
+                    </div>
+                    <div class="card-body p-4 text-muted">
+                        <p class="mb-1"><strong>Session Status:</strong> Active and Authenticated via Service</p>
+                        <p class="mb-0"><strong>Security Token:</strong> Verified via Singleton Instance State</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="bg-warning-subtle text-warning-emphasis p-4 text-center border-bottom border-warning-subtle">
+                        <i class="bi bi-exclamation-triangle-fill display-3 mb-2 text-warning"></i>
+                        <h2 class="fw-bold">Access Restricted</h2>
+                        <p class="mb-0">You are currently viewing this screen as a guest</p>
+                    </div>
+                    <div class="card-body p-4 text-center">
+                        <p class="text-secondary">Please navigate to the login panel to unlock your private user dashboard data records.</p>
+                        <a href="login" class="btn btn-outline-warning mt-2 fw-semibold px-4 shadow-sm">
+                            Go to Login Center
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Hooks the reactive state action listener onto the local component state tree
+    protected override void OnInitialized()
+    {
+        AuthService.OnStateChanged += StateHasChanged;
+    }
+
+    // Standard housekeeping cleanup method to drop the reference hook safely
+    public void Dispose()
+    {
+        AuthService.OnStateChanged -= StateHasChanged;
+    }
+}
