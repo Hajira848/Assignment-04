@@ -1,4 +1,5 @@
 ﻿@page "/todolist"
+@using Application_03.Models
 @rendermode InteractiveServer
 
 <div class="container mt-5">
@@ -14,25 +15,25 @@
                         <input type="text"
                                class="form-control form-control-lg"
                                placeholder="Enter a new task..."
-                               @bind="newTaskTitle"
+                               @bind="App.NewTaskTitle"
                                @bind:event="oninput"
-                               @onkeyup="HandleKeyPress" />
-                        <button class="btn btn-success btn-lg px-4" @onclick="AddTask">
+                               @onkeyup="App.HandleKeyPress" />
+                        <button class="btn btn-success btn-lg px-4" @onclick="App.AddTask">
                             <i class="bi bi-plus-circle-fill me-1"></i> Add
                         </button>
                     </div>
 
-                    @if (tasksList.Count > 0)
+                    @if (App.TasksList.Count > 0)
                     {
                         <div class="text-end mb-3">
-                            <button class="btn btn-outline-danger btn-sm shadow-sm" @onclick="ClearAllTasks">
+                            <button class="btn btn-outline-danger btn-sm shadow-sm" @onclick="App.ClearAllTasks">
                                 <i class="bi bi-trash3-fill me-1"></i> Clear All Tasks
                             </button>
                         </div>
                     }
 
                     <div class="mt-2">
-                        @if (tasksList.Count == 0)
+                        @if (App.TasksList.Count == 0)
                         {
                             <div class="text-center text-muted my-4 py-3 bg-light rounded border border-dashed">
                                 <i class="bi bi-clipboard-x fs-2 d-block mb-2 text-secondary"></i>
@@ -42,13 +43,36 @@
                         else
                         {
                             <ul class="list-group shadow-sm">
-                                @foreach (var task in tasksList)
+                                @foreach (var task in App.TasksList)
                                 {
-                                    <li class="list-group-item d-flex justify-content-between align-items-center py-3 animate-fade-in">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-arrow-right-short text-success fs-4 me-2"></i>
-                                            <span class="fs-5">@task</span>
-                                        </div>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                        @if (task.IsEditing)
+                                        {
+                                            <div class="input-group input-group-sm w-100">
+                                                <input type="text" class="form-control" @bind="task.EditText" />
+                                                <button class="btn btn-success" @onclick="() => App.SaveEdit(task)">
+                                                    <i class="bi bi-check-lg"></i> Save
+                                                </button>
+                                                <button class="btn btn-secondary" @onclick="() => App.CancelEdit(task)">
+                                                    <i class="bi bi-x-lg"></i> Cancel
+                                                </button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-arrow-right-short text-success fs-4 me-2"></i>
+                                                <span class="fs-5">@task.Title</span>
+                                            </div>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary" @onclick="() => App.StartEdit(task)">
+                                                    <i class="bi bi-pencil-fill"></i> Edit
+                                                </button>
+                                                <button class="btn btn-outline-danger" @onclick="() => App.DeleteTask(task)">
+                                                    <i class="bi bi-trash-fill"></i> Delete
+                                                </button>
+                                            </div>
+                                        }
                                     </li>
                                 }
                             </ul>
@@ -62,28 +86,6 @@
 </div>
 
 @code {
-    private string newTaskTitle = string.Empty;
-
-    private List<string> tasksList = new List<string>();
-    private void AddTask()
-    {
-        if (!string.IsNullOrWhiteSpace(newTaskTitle))
-        {
-            tasksList.Add(newTaskTitle.Trim());
-            newTaskTitle = string.Empty;
-        }
-    }
-
-    private void HandleKeyPress(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            AddTask();
-        }
-    }
-
-    private void ClearAllTasks()
-    {
-        tasksList.Clear();
-    }
+    // Instance creation of the engine defined inside TodoItem.cs
+    private TodoAppEngine App = new TodoAppEngine();
 }
