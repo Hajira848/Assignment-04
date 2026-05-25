@@ -1,17 +1,105 @@
 ﻿@inherits LayoutComponentBase
 
+@functions {
+    // 🌟 This explicitly declares the parameters so the compiler never throws CS0103
+    private string CurrentTheme { get; set; } = "light";
+
+    private void ToggleTheme()
+    {
+        CurrentTheme = (CurrentTheme == "light") ? "dark" : "light";
+    }
+}
+
+<style>
+    body, html, .page, main {
+        background-color: @(CurrentTheme == "dark" ? "#0b0f19" : "#f8fafc") !important;
+        color: @(CurrentTheme == "dark" ? "#f1f5f9" : "#0f172a") !important;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .content {
+        background-color: @(CurrentTheme == "dark" ? "#0b0f19" : "#f8fafc") !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: @(CurrentTheme == "dark" ? "#ffffff" : "#1e293b") !important;
+        font-weight: 700;
+    }
+
+    p, span, label {
+        color: @(CurrentTheme == "dark" ? "#94a3b8" : "#475569") !important;
+    }
+
+    .sidebar {
+        background-image: @(CurrentTheme == "dark" 
+            ? "linear-gradient(180deg, #111827 0%, #030712 100%)" 
+            : "linear-gradient(180deg, #1e3a8a 0%, #0d1b2a 100%)") !important;
+        box-shadow: 4px 0 24px rgba(0,0,0, @(CurrentTheme == "dark" ? "0.5" : "0.15")) !important;
+    }
+
+    .top-row {
+        background-color: @(CurrentTheme == "dark" ? "rgba(15, 23, 42, 0.8)" : "rgba(255, 255, 255, 0.8)") !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border-bottom: 1px solid @(CurrentTheme == "dark" ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)") !important;
+    }
+
+    .top-row a {
+        color: @(CurrentTheme == "dark" ? "#38bdf8" : "#2563eb") !important;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .theme-toggle-btn {
+        padding: 0.6rem 1.4rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: 50px;
+        border: 1px solid @(CurrentTheme == "dark" ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)");
+        background: @(CurrentTheme == "dark" ? "#1e293b" : "#ffffff") !important;
+        color: @(CurrentTheme == "dark" ? "#f8fafc" : "#0f172a") !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .theme-toggle-btn:hover {
+        transform: translateY(-2px);
+        border-color: @(CurrentTheme == "dark" ? "#38bdf8" : "#2563eb") !important;
+    }
+
+    .card, table, .table, th, td {
+        background-color: @(CurrentTheme == "dark" ? "#1e293b" : "#ffffff") !important;
+        color: @(CurrentTheme == "dark" ? "#f1f5f9" : "#0f172a") !important;
+    }
+</style>
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="top-row d-flex justify-content-between align-items-center shadow-sm px-4">
+            
+            <button class="theme-toggle-btn" @onclick="ToggleTheme">
+                @if (CurrentTheme == "dark")
+                {
+                    <i class="bi bi-sun-fill me-2 text-warning"></i> <span>Switch to Light Mode</span>
+                }
+                else
+                {
+                    <i class="bi bi-moon-stars-fill me-2 text-primary"></i> <span>Switch to Dark Mode</span>
+                }
+            </button>
+
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About Architecture</a>
         </div>
 
-        <article class="content px-4">
-            @Body
+        <article class="content px-4 py-5">
+            <div class="container-fluid">
+                @Body
+            </div>
         </article>
     </main>
 </div>

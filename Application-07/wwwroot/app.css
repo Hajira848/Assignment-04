@@ -58,3 +58,29 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+/* ==========================================
+   APPLICATION 07 - PURE C# OVERRIDES
+   ========================================== */
+.bg-dark {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+}
+
+/* Blazor framework structural containers override */
+.page.bg-dark,
+main.bg-dark,
+.content.bg-dark,
+.content.bg-dark * {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* Dark mode text inputs inside dashboard */
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark p, .bg-dark span {
+    color: #ffffff !important;
+}

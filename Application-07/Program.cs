@@ -17,7 +17,10 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // Agar .NET 8 hai
 
+// YA fir agar .NET 9 use kar rahe hain:
+app.MapStaticAssets();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
