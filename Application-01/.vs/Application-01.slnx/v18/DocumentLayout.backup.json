@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Assignment-04\\Application-01\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|d:\\assignment-04\\application-01\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|d:\\assignment-04\\application-01\\components\\greeting.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|solutionrelative:components\\greeting.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|d:\\assignment-04\\application-01\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|d:\\assignment-04\\application-01\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BACBF92-16BE-7E23-8B91-E140783EC73A}|Application-01.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Assignment-04\\Application-01\\.vs\\Application-01.slnx\\config\\applicationhost.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -46,25 +46,24 @@
               "RelativeToolTip": ".vs\\Application-01.slnx\\config\\applicationhost.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-05-25T04:49:01.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T04:49:01.494Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "App.razor",
               "DocumentMoniker": "D:\\Assignment-04\\Application-01\\Components\\App.razor",
               "RelativeDocumentMoniker": "Components\\App.razor",
               "ToolTip": "D:\\Assignment-04\\Application-01\\Components\\App.razor",
               "RelativeToolTip": "Components\\App.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-25T04:24:00.116Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\Assignment-04\\Application-01\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
@@ -77,13 +76,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Greeting.razor",
               "DocumentMoniker": "D:\\Assignment-04\\Application-01\\Components\\Greeting.razor",
               "RelativeDocumentMoniker": "Components\\Greeting.razor",
               "ToolTip": "D:\\Assignment-04\\Application-01\\Components\\Greeting.razor",
               "RelativeToolTip": "Components\\Greeting.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAqwCkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-25T04:03:11.027Z",
               "EditorCaption": ""
@@ -98,8 +97,7 @@
               "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-25T04:07:33.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T04:07:33.275Z"
             },
             {
               "$type": "Document",
