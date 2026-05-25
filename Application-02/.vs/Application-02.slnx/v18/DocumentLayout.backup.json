@@ -34,12 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -63,8 +59,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T05:02:24.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T05:02:24.697Z"
             },
             {
               "$type": "Document",
@@ -76,8 +71,7 @@
               "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-25T05:01:54.854Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T05:01:54.854Z"
             },
             {
               "$type": "Document",
@@ -89,8 +83,7 @@
               "RelativeToolTip": "Models\\UserModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T05:00:36.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T05:00:36.501Z"
             },
             {
               "$type": "Document",
@@ -102,21 +95,23 @@
               "RelativeToolTip": "Components\\UserForm.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-25T05:01:04.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T05:01:04.754Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Application-02",
+              "Title": "Application-02.csproj",
               "DocumentMoniker": "D:\\Assignment-04\\Application-02\\Application-02.csproj",
               "RelativeDocumentMoniker": "Application-02.csproj",
               "ToolTip": "D:\\Assignment-04\\Application-02\\Application-02.csproj",
               "RelativeToolTip": "Application-02.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-25T05:00:03.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T05:00:03.933Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
