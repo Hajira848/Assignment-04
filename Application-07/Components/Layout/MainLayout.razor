@@ -1,7 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
 @functions {
-    // 🌟 This explicitly declares the parameters so the compiler never throws CS0103
     private string CurrentTheme { get; set; } = "light";
 
     private void ToggleTheme()
@@ -109,3 +108,5 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
+
+
