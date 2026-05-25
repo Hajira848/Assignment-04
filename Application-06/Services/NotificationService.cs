@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Application_05.Services
+namespace Application_06.Services
 {
     public class NotificationService
     {
@@ -12,7 +12,8 @@ namespace Application_05.Services
             _config = config;
         }
 
-        public async Task<List<string>> GetNotificationsAsync(int? numberOfNotifications = null)
+        public async Task<List<string>> GetNotificationsAsync(int? numberOfNotifications =
+            null)
         {
             int count = numberOfNotifications ?? _config.DefaultNumberOfNotifications;
 
@@ -29,3 +30,4 @@ namespace Application_05.Services
         }
     }
 }
+

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Application_05.Services 
+namespace Application_06.Services 
 {
     public class NotificationConfig
     {
@@ -11,3 +11,4 @@ namespace Application_05.Services
         public void NotifyChanged() => OnConfigChanged?.Invoke();
     }
 }
+
