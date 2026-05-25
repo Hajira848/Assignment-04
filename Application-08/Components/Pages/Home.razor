@@ -1,7 +1,209 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Data Metrics - Home Terminal</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="dashboard-viewport">
+    <div class="system-hero-card">
+        <div class="card-identity-header">
+            <div class="status-icon-frame">
+                <i class="bi bi-database-fill-check text-white"></i>
+            </div>
+            <div class="title-block">
+                <span class="sub-label-text">Database Integration Core</span>
+                <h1 class="main-heading-text">Application 08 Terminal</h1>
+            </div>
+        </div>
 
-Welcome to your new app.
+        <p class="description-body-prose">
+            Welcome to the centralized enterprise node. This application module establishes a persistent operational pipeline between the Blazor presentation layer and the SQL Server relational database instance.
+        </p>
+
+        <div class="divider-line"></div>
+
+        <div class="telemetry-pill-row">
+            <div class="telemetry-pill">
+                <span class="active-pulse-dot"></span>
+                <span class="pill-data-string">EF Core Mapping Subsystem Active</span>
+            </div>
+            <div class="telemetry-pill">
+                <i class="bi bi-hdd-network-fill telemetry-icon-accent"></i>
+                <span class="pill-data-string">Local SQL Instance: Connected</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="metrics-grid-row">
+        <div class="metric-data-card border-accent-left">
+            <div class="metric-card-header">
+                <span class="metric-category-tag">Data Ledger Metrics</span>
+                <i class="bi bi-arrow-repeat metric-icon-red"></i>
+            </div>
+            <h3 class="metric-numerical-display">Live CRUD</h3>
+            <p class="metric-context-caption">Transactional records synchronized across instances instantly</p>
+        </div>
+
+        <div class="metric-data-card border-accent-blue">
+            <div class="metric-card-header">
+                <span class="metric-category-tag">Pipeline Latency</span>
+                <i class="bi bi-lightning-charge-fill metric-icon-blue"></i>
+            </div>
+            <h3 class="metric-numerical-display">0 ms</h3>
+            <p class="metric-context-caption">State tracking persistence refresh latency pool</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-viewport {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .system-hero-card {
+        padding: 2.5rem;
+        border-radius: 1rem;
+        background: rgba(128, 128, 128, 0.05);
+        border: 1px solid rgba(128, 128, 128, 0.15);
+    }
+
+    .card-identity-header {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .status-icon-frame {
+        padding: 1rem;
+        background-color: #0d6efd;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        box-shadow: 0 0.25rem 0.5rem rgba(13, 110, 253, 0.2);
+    }
+
+    .title-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub-label-text {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        opacity: 0.6;
+    }
+
+    .main-heading-text {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .description-body-prose {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        opacity: 0.85;
+        max-width: 45rem;
+    }
+
+    .divider-line {
+        height: 1px;
+        background-color: rgba(128, 128, 128, 0.2);
+        margin: 1.5rem 0;
+    }
+
+    .telemetry-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .telemetry-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50rem;
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        background-color: rgba(128, 128, 128, 0.03);
+        font-size: 0.87rem;
+        font-weight: 600;
+    }
+
+    .active-pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #198754;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #198754;
+    }
+
+    .telemetry-icon-accent {
+        color: #0dcaf0;
+    }
+
+    .metrics-grid-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .metric-data-card {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        background-color: rgba(128, 128, 128, 0.03);
+        border: 1px solid rgba(128, 128, 128, 0.12);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .border-accent-left {
+        border-left: 4px solid #dc3545;
+    }
+
+    .border-accent-blue {
+        border-left: 4px solid #0d6efd;
+    }
+
+    .metric-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .metric-category-tag {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        opacity: 0.6;
+    }
+
+    .metric-icon-red {
+        color: #dc3545;
+        font-size: 1.25rem;
+    }
+
+    .metric-icon-blue {
+        color: #0d6efd;
+        font-size: 1.25rem;
+    }
+
+    .metric-numerical-display {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .metric-context-caption {
+        font-size: 0.87rem;
+        margin: 0;
+        opacity: 0.7;
+    }
+</style>

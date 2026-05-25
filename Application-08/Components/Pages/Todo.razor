@@ -142,6 +142,7 @@
 @code {
     private List<ToDoTask> Tasks = new();
     private string NewTaskTitle { get; set; } = string.Empty;
+    private bool isOperating = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -150,43 +151,75 @@
 
     private async Task LoadTasksFromDatabase()
     {
-        // READ Operation
-        Tasks = await DbContext.ToDoTasks.OrderByDescending(t => t.CreatedAt).ToListAsync();
+        Tasks = await DbContext.ToDoTasks
+                               .AsNoTracking()
+                               .OrderByDescending(t => t.CreatedAt)
+                               .ToListAsync();
     }
 
     private async Task AddTask()
     {
-        // CREATE Operation
-        if (!string.IsNullOrWhiteSpace(NewTaskTitle))
+        if (isOperating || string.IsNullOrWhiteSpace(NewTaskTitle)) return;
+
+        try
         {
+            isOperating = true;
             var task = new ToDoTask { Title = NewTaskTitle.Trim(), IsCompleted = false };
             DbContext.ToDoTasks.Add(task);
             await DbContext.SaveChangesAsync();
 
             NewTaskTitle = string.Empty;
-            await LoadTasksFromDatabase(); // Refresh local viewport state
         }
+        finally
+        {
+            isOperating = false;
+        }
+
+        await LoadTasksFromDatabase();
     }
 
     private async Task ToggleTaskCompletion(ToDoTask task)
     {
-        // UPDATE Operation
-        task.IsCompleted = !task.IsCompleted;
-        DbContext.ToDoTasks.Update(task);
-        await DbContext.SaveChangesAsync();
+        if (isOperating) return;
+
+        try
+        {
+            isOperating = true;
+            var dbTask = await DbContext.ToDoTasks.FindAsync(task.Id);
+            if (dbTask != null)
+            {
+                dbTask.IsCompleted = !dbTask.IsCompleted;
+                await DbContext.SaveChangesAsync();
+            }
+        }
+        finally
+        {
+            isOperating = false;
+        }
+
         await LoadTasksFromDatabase();
     }
 
     private async Task DeleteTask(int id)
     {
-        // DELETE Operation
-        var task = await DbContext.ToDoTasks.FindAsync(id);
-        if (task != null)
+        if (isOperating) return;
+
+        try
         {
-            DbContext.ToDoTasks.Remove(task);
-            await DbContext.SaveChangesAsync();
-            await LoadTasksFromDatabase();
+            isOperating = true;
+            var task = await DbContext.ToDoTasks.FindAsync(id);
+            if (task != null)
+            {
+                DbContext.ToDoTasks.Remove(task);
+                await DbContext.SaveChangesAsync();
+            }
         }
+        finally
+        {
+            isOperating = false;
+        }
+
+        await LoadTasksFromDatabase();
     }
 
     private async Task HandleKeyUp(KeyboardEventArgs e)
