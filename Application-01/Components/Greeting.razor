@@ -1,0 +1,49 @@
+﻿@page "/greeting"
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h3 class="mb-0">User Greeting Module</h3>
+                </div>
+                <div class="card-body p-5">
+
+                    <div class="form-group mb-4">
+                        <label class="form-label fw-bold fs-5">Enter Your Name:</label>
+                        <input type="text"
+                               class="form-control form-control-lg shadow-sm"
+                               placeholder="Start typing your name..."
+                               @bind="userName"
+                               @bind:event="oninput" />
+
+                        <div class="form-text mt-2 text-primary">
+                            Two-way binding is capturing your input live.
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info border-0 shadow-sm mt-5 py-4 text-center">
+                        <h4 class="text-muted mb-2">Displaying Greeting (One-Way):</h4>
+                        <h2 class="text-dark fw-bold">
+                            @if (string.IsNullOrWhiteSpace(userName))
+                            {
+                                <span>Hello, Guest!</span>
+                            }
+                            else
+                            {
+                                <span>Hello, @userName!</span>
+                            }
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string userName { get; set; } = string.Empty;
+}
+
